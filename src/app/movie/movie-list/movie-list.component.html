@@ -1,31 +1,14 @@
 <h1>Lista de Películas</h1>
-<div>
-  <div>
-    @if(selected){
-    <app-movie-detail [movie]="selectedMovie"></app-movie-detail>
+<div class="movies-container">
+  <div class="movies-grid">
+    @for(movie of movies; track movie.id) {
+    <div class="movie-card" (click)="navigateToDetail(movie)">
+      <img [src]="movie.posterImageUrl" alt="{{ movie.title }} poster" />
+      <div class="movie-title">{{ movie.title }}</div>
+      <div class="movie-meta">Director: {{ movie.director }}</div>
+      <div class="movie-meta">Año: {{ movie.releaseYear }}</div>
+      <div class="movie-meta">Calificación: {{ movie.rating }}</div>
+    </div>
     }
-    <table>
-      <tr>
-        <th scope="col">Título</th>
-        <th scope="col">Poster</th>
-        <th scope="col">Director</th>
-        <th scope="col">Año</th>
-        <th scope="col">Calificación</th>
-      </tr>
-      @for(movie of movies; track movie.id) {
-
-      <tr (click)="onSelect(movie)">
-        <td>
-          <b>{{ movie.title }}</b>
-        </td>
-        <td>
-          <img class="poster-img" [src]="movie.posterImageUrl" alt="{{ movie.title }} poster" />
-        </td>
-        <td>{{ movie.director }}</td>
-        <td>{{ movie.releaseYear }}</td>
-        <td>{{ movie.rating }}</td>
-      </tr>
-      }
-    </table>
   </div>
 </div>

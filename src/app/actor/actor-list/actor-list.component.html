@@ -1,5 +1,7 @@
-<ul>
+<ul class="actors-list">
   @for(actor of actors; track actor.id) {
-  <li>{{ actor.name }}</li>
+  <li class="actor-item">
+    <div class="actor-name">{{ actor.name }}</div>
+  </li>
   }
 </ul>

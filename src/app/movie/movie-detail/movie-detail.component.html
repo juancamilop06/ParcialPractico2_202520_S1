@@ -1,17 +1,23 @@
-<div>
+<div class="detail-container">
   <h2>{{ movie?.title }}</h2>
-  <div>
-    <img class="poster-detail-img" [src]="movie?.posterImageUrl" alt="{{ movie?.title }} poster" />
-  </div>
-  <div>
-    <p><strong>Director:</strong> {{ movie?.director }}</p>
-    <p><strong>Año de lanzamiento:</strong> {{ movie?.releaseYear }}</p>
-    <p><strong>Calificación:</strong> {{ movie?.rating }}</p>
-    <p><strong>Género:</strong> {{ movie?.genre }}</p>
-    <p><strong>Sinopsis:</strong> {{ movie?.description }}</p>
+  <div class="detail-top">
+    <div class="detail-info">
+      <p><strong>Director:</strong> {{ movie?.director }}</p>
+      <p><strong>Año de lanzamiento:</strong> {{ movie?.releaseYear }}</p>
+      <p><strong>Calificación:</strong> {{ movie?.rating }}</p>
+      <p><strong>Duración:</strong> {{ durationFormatted }}</p>
+      <p><strong>Género:</strong> {{ movie?.genre }}</p>
+      <p><strong>Sinopsis:</strong> {{ movie?.description }}</p>
+    </div>
+    <div class="detail-poster">
+      <img class="poster-detail-img" [src]="movie?.posterImageUrl" alt="{{ movie?.title }} poster" />
+    </div>
   </div>
   <div>
     <h3>Reparto:</h3>
-    <app-actor-list [actors]="movie?.cast"></app-actor-list>
+    @if(movie?.cast) {
+    <p class="avg-popularity">Promedio popularidad: {{ averagePopularity | number:'1.1-1' }}</p>
+    <app-actor-list [actors]="movie!.cast"></app-actor-list>
+    }
   </div>
 </div>
